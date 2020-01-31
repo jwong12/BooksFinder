@@ -21,7 +21,7 @@ class App extends Component {
 
   componentDidMount() {
     this.setState({
-      bookInput: 'Harry Potter'
+      bookInput: 'harry potter'
     }, () => {
       this.getApiRequest(this.state.bookInput);
     });
@@ -37,10 +37,10 @@ class App extends Component {
 
       if(response.data.totalItems === 0) {
         this.setState({ error: `No books found for '${keyword}'.` });
-      }            
+      }     
     })
     .catch((error) => {
-      console.error('There was an error from the api server.');
+      this.setState({ error: 'There was an error from the api server.' });
     });
   }
 
@@ -56,8 +56,10 @@ class App extends Component {
   }
 
   handleSearchClick() {
-    this.setState({ error: null });
-    this.getApiRequest(this.state.bookInput);
+    if (this.state.bookInput.trim() !== '') {
+      this.setState({ error: null });
+      this.getApiRequest(this.state.bookInput);
+    }
   }
 
   render() {
@@ -75,7 +77,7 @@ class App extends Component {
             placeholder="Enter title or author"
           />
           <button onClick={this.handleSearchClick}>Search</button>          
-          {!books.length && (
+          {(books === undefined || !books.length) && !error && (
             <div id="loader">
               <Loader
                 type="CradleLoader"
@@ -101,7 +103,9 @@ class App extends Component {
             </ul>
           )}          
           {error && (
-            <p>{error}</p>
+            <div className="book" style={{ marginTop:16 }}>
+              <p>{error}</p>
+            </div>
             )}
         </header>
       </div>
