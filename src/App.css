@@ -52,6 +52,15 @@ ul {
 
 .bookDetails p{
   margin: 0;
-  padding: 5px 0 0 0;
+  padding: 7px 0 0 0;
+}
+
+.authors {
   font-size: 14px;
+}
+
+#loader {
+  margin: auto;
+  width: 130px;
+  padding: 200px 0;
 }

@@ -16,7 +16,7 @@ class BookListing extends Component {
         } else if(authors && authors.length === 1) {
             return authors;
         }
-        return "Unknown";
+        return 'Unknown';
     }
 
     formatCategories = (categories) => {
@@ -28,16 +28,16 @@ class BookListing extends Component {
             }
             return categoriesConcat;
         }
-        return "Unknown";
+        return 'Unknown';
     }
 
     render() {
         return(
-            <div className='book'>
-                <img src={this.props.imgUrl ? this.props.imgUrl : 'unknown.jpg'} alt={this.props.title} />
-                <div className='bookDetails'>
-                    <a href={this.props.volumeUrl} target='_blank' rel='noopener'>{this.props.title}</a>                    
-                    <p>by {this.formatAuthors(this.props.authors)}</p>
+            <div className="book">
+                <img src={this.props.imgUrl ? this.props.imgUrl : "unknown.jpg"} alt={this.props.title} />
+                <div className="bookDetails">
+                    <a href={this.props.volumeUrl} target="_blank" rel="noopener noreferrer">{this.props.title}</a>                    
+                    <p className="authors">by {this.formatAuthors(this.props.authors)}</p>
                     <p>Category: {this.formatCategories(this.props.categories)}</p>
                     <p>Description: {this.props.description}</p>
                 </div>

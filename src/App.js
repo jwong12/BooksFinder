@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import BookListing from './BookListing';
 import axios from 'axios';
+import Loader from 'react-loader-spinner'
 import './App.css';
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
 
 class App extends Component {
   constructor(props) {
@@ -72,7 +74,16 @@ class App extends Component {
             onKeyDown={this.handleKeyDown}
             placeholder="Enter title or author"
           />
-          <button onClick={this.handleSearchClick}>Search</button>
+          <button onClick={this.handleSearchClick}>Search</button>          
+          {!books.length && (
+            <div id="loader">
+              <Loader
+                type="CradleLoader"
+                height={100}
+                width={100} 
+              />
+            </div>            
+          )}
           {books && (
             <ul>
               {books.map((book) => 
